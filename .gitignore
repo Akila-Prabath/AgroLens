@@ -1,3 +1,21 @@
+# Python
+ml/venv/
+__pycache__/
+*.pyc
+
+# Datasets
+ml/datasets/
+
+# Models
+ml/models/*.h5
+ml/models/*.keras
+
+# Jupyter
+.ipynb_checkpoints/
+
+# TensorFlow exports
+ml/exports/*.tflite
+
 # Miscellaneous
 *.class
 *.lock
