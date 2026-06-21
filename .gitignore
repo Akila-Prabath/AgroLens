@@ -6,6 +6,9 @@ __pycache__/
 # Datasets
 ml/datasets/
 
+# Processed Dataset
+ml/processed/
+
 # Models
 ml/models/*.h5
 ml/models/*.keras
