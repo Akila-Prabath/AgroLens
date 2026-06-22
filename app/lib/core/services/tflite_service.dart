@@ -8,7 +8,7 @@ class TFLiteService {
   Future<void> loadModel() async {
     _interpreter =
         await Interpreter.fromAsset(
-      'models/agrolens_model.tflite',
+      'assets/models/agrolens_model.tflite',
     );
   }
 

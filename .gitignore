@@ -28,7 +28,8 @@ ml/exports/*.tflite
 .buildlog/
 .history
 
-
+# Flutter DevTools
+app/devtools_options.yaml
 
 # Flutter repo-specific
 /bin/cache/
