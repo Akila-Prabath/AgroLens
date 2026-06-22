@@ -1,0 +1,184 @@
+{
+  "bacterial_leaf_blight": {
+    "name": "Bacterial Leaf Blight",
+    "description": "A serious bacterial disease caused by Xanthomonas oryzae that affects rice leaves and reduces crop yield.",
+    "symptoms": [
+      "Yellowing of leaf edges",
+      "Drying of leaf tips",
+      "Wavy lesions along leaf margins",
+      "Leaves turn brown and wilt"
+    ],
+    "causes": [
+      "Infected seeds",
+      "Heavy rainfall",
+      "Strong winds",
+      "High humidity"
+    ],
+    "fertilizers": [
+      "Apply balanced NPK fertilizer",
+      "Avoid excessive nitrogen fertilizer"
+    ],
+    "chemicals": [
+      "Copper hydroxide",
+      "Copper oxychloride"
+    ],
+    "prevention": [
+      "Use disease-free seeds",
+      "Maintain proper field drainage",
+      "Avoid excessive nitrogen application",
+      "Remove infected plant debris"
+    ]
+  },
+
+  "blast": {
+    "name": "Rice Blast",
+    "description": "A fungal disease caused by Magnaporthe oryzae that can affect leaves, stems and panicles.",
+    "symptoms": [
+      "Diamond-shaped lesions",
+      "Gray centers with brown borders",
+      "Leaf drying",
+      "Neck rot in severe cases"
+    ],
+    "causes": [
+      "High humidity",
+      "Frequent rainfall",
+      "Dense planting",
+      "Excess nitrogen fertilizer"
+    ],
+    "fertilizers": [
+      "Use balanced NPK fertilizer",
+      "Apply potassium-rich fertilizer"
+    ],
+    "chemicals": [
+      "Tricyclazole",
+      "Azoxystrobin",
+      "Isoprothiolane"
+    ],
+    "prevention": [
+      "Use resistant rice varieties",
+      "Avoid excessive nitrogen",
+      "Maintain proper spacing",
+      "Monitor fields regularly"
+    ]
+  },
+
+  "brown_spot": {
+    "name": "Brown Spot",
+    "description": "A fungal disease caused by Bipolaris oryzae resulting in brown lesions on rice leaves.",
+    "symptoms": [
+      "Circular brown spots",
+      "Dark brown leaf lesions",
+      "Reduced plant vigor",
+      "Premature leaf drying"
+    ],
+    "causes": [
+      "Nutrient deficiency",
+      "Poor soil fertility",
+      "Drought stress",
+      "Fungal infection"
+    ],
+    "fertilizers": [
+      "Apply potassium fertilizer",
+      "Apply balanced NPK fertilizer",
+      "Improve soil fertility"
+    ],
+    "chemicals": [
+      "Mancozeb",
+      "Propiconazole"
+    ],
+    "prevention": [
+      "Use healthy seeds",
+      "Maintain soil nutrients",
+      "Practice crop rotation",
+      "Avoid water stress"
+    ]
+  },
+
+  "healthy": {
+    "name": "Healthy Rice Plant",
+    "description": "The rice plant appears healthy with no visible disease symptoms.",
+    "symptoms": [
+      "Green healthy leaves",
+      "No lesions",
+      "Normal plant growth",
+      "Healthy tillers"
+    ],
+    "causes": [
+      "Good crop management",
+      "Proper fertilization",
+      "Disease-free environment"
+    ],
+    "fertilizers": [
+      "Follow recommended fertilizer schedule",
+      "Use balanced NPK fertilizer"
+    ],
+    "chemicals": [
+      "No chemical treatment required"
+    ],
+    "prevention": [
+      "Continue regular monitoring",
+      "Maintain proper irrigation",
+      "Use recommended farming practices"
+    ]
+  },
+
+  "leaf_scald": {
+    "name": "Leaf Scald",
+    "description": "A fungal disease characterized by large water-soaked lesions that later become dry and straw colored.",
+    "symptoms": [
+      "Water-soaked lesions",
+      "Straw-colored leaf areas",
+      "Leaf tip drying",
+      "Irregular lesion margins"
+    ],
+    "causes": [
+      "High humidity",
+      "Fungal infection",
+      "Poor air circulation"
+    ],
+    "fertilizers": [
+      "Apply balanced fertilizer",
+      "Avoid excessive nitrogen"
+    ],
+    "chemicals": [
+      "Propiconazole",
+      "Mancozeb"
+    ],
+    "prevention": [
+      "Improve field ventilation",
+      "Avoid overcrowding",
+      "Monitor moisture levels"
+    ]
+  },
+
+  "sheath_blight": {
+    "name": "Sheath Blight",
+    "description": "A fungal disease caused by Rhizoctonia solani affecting leaf sheaths and reducing yield.",
+    "symptoms": [
+      "Oval lesions on leaf sheaths",
+      "Brown infection zones",
+      "Leaf yellowing",
+      "Reduced grain filling"
+    ],
+    "causes": [
+      "High humidity",
+      "Dense planting",
+      "Excess nitrogen fertilizer"
+    ],
+    "fertilizers": [
+      "Apply balanced NPK fertilizer",
+      "Reduce excessive nitrogen use"
+    ],
+    "chemicals": [
+      "Validamycin",
+      "Hexaconazole",
+      "Propiconazole"
+    ],
+    "prevention": [
+      "Maintain proper plant spacing",
+      "Improve field drainage",
+      "Monitor disease development",
+      "Remove infected residues"
+    ]
+  }
+}
