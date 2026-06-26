@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-
+import 'package:go_router/go_router.dart';
+import '../../../app/router.dart';
 import '../widgets/action_card.dart';
 import '../widgets/app_header.dart';
 import '../widgets/detection_card.dart';
@@ -61,7 +62,9 @@ class HomeScreen extends StatelessWidget {
                         subtitle: 'Take a photo of affected leaf',
                         icon: Icons.camera_alt_outlined,
                         isCamera: true,
-                        onTap: () {},
+                        onTap: () {
+                          context.push(AppRoutes.camera);
+                        },
                       ),
                     ),
 

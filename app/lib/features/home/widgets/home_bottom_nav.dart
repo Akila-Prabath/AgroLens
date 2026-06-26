@@ -6,10 +6,7 @@ import '../../../app/router.dart';
 class HomeBottomNav extends StatelessWidget {
   final int currentIndex;
 
-  const HomeBottomNav({
-    super.key,
-    this.currentIndex = 0,
-  });
+  const HomeBottomNav({super.key, this.currentIndex = 0});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +18,6 @@ class HomeBottomNav extends StatelessWidget {
           clipBehavior: Clip.none,
           alignment: Alignment.topCenter,
           children: [
-
             // Bottom Navigation Bar
             Positioned(
               left: 0,
@@ -31,11 +27,7 @@ class HomeBottomNav extends StatelessWidget {
                 height: 72,
                 decoration: BoxDecoration(
                   color: Colors.white,
-                  border: Border(
-                    top: BorderSide(
-                      color: Colors.grey.shade200,
-                    ),
-                  ),
+                  border: Border(top: BorderSide(color: Colors.grey.shade200)),
                   boxShadow: [
                     BoxShadow(
                       color: Colors.black.withOpacity(0.06),
@@ -46,15 +38,12 @@ class HomeBottomNav extends StatelessWidget {
                 ),
                 child: Row(
                   children: [
-
                     Expanded(
                       child: _NavItem(
                         icon: Icons.home_rounded,
                         label: 'Home',
                         isSelected: currentIndex == 0,
-                        onTap: () => context.go(
-                          AppRoutes.home,
-                        ),
+                        onTap: () => context.go(AppRoutes.home),
                       ),
                     ),
 
@@ -63,9 +52,7 @@ class HomeBottomNav extends StatelessWidget {
                         icon: Icons.history_rounded,
                         label: 'History',
                         isSelected: currentIndex == 1,
-                        onTap: () => context.go(
-                          AppRoutes.history,
-                        ),
+                        onTap: () => context.go(AppRoutes.history),
                       ),
                     ),
 
@@ -78,7 +65,7 @@ class HomeBottomNav extends StatelessWidget {
                         label: 'Diseases',
                         isSelected: currentIndex == 2,
                         onTap: () {
-                          // TODO
+                          context.push(AppRoutes.camera);
                         },
                       ),
                     ),
@@ -88,9 +75,7 @@ class HomeBottomNav extends StatelessWidget {
                         icon: Icons.person_outline_rounded,
                         label: 'Profile',
                         isSelected: currentIndex == 3,
-                        onTap: () => context.go(
-                          AppRoutes.profile,
-                        ),
+                        onTap: () => context.go(AppRoutes.profile),
                       ),
                     ),
                   ],
@@ -103,8 +88,7 @@ class HomeBottomNav extends StatelessWidget {
               top: 0,
               child: GestureDetector(
                 onTap: () {
-                  // TODO:
-                  // Open Camera Screen
+                  context.push(AppRoutes.camera);
                 },
                 child: Container(
                   width: 72,
@@ -112,10 +96,7 @@ class HomeBottomNav extends StatelessWidget {
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     gradient: const LinearGradient(
-                      colors: [
-                        Color(0xFF2E7D32),
-                        Color(0xFF43A047),
-                      ],
+                      colors: [Color(0xFF2E7D32), Color(0xFF43A047)],
                       begin: Alignment.topLeft,
                       end: Alignment.bottomRight,
                     ),
@@ -123,16 +104,10 @@ class HomeBottomNav extends StatelessWidget {
                       BoxShadow(
                         color: Colors.green.withOpacity(0.05),
                         blurRadius: 18,
-                        offset: const Offset(
-                          0,
-                          8,
-                        ),
+                        offset: const Offset(0, 8),
                       ),
                     ],
-                    border: Border.all(
-                      color: Colors.white,
-                      width: 8,
-                    ),
+                    border: Border.all(color: Colors.white, width: 8),
                   ),
                   child: const Icon(
                     Icons.camera_alt_rounded,
@@ -175,12 +150,7 @@ class _NavItem extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-
-            Icon(
-              icon,
-              size: 24,
-              color: color,
-            ),
+            Icon(icon, size: 24, color: color),
 
             const SizedBox(height: 3),
 
@@ -188,9 +158,7 @@ class _NavItem extends StatelessWidget {
               label,
               style: TextStyle(
                 fontSize: 11,
-                fontWeight: isSelected
-                    ? FontWeight.w600
-                    : FontWeight.w500,
+                fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
                 color: color,
               ),
             ),
