@@ -72,11 +72,13 @@ class HomeScreen extends StatelessWidget {
 
                     Expanded(
                       child: ActionCard(
-                        title: 'Upload Image',
-                        subtitle: 'Choose from your gallery',
+                        title: "Upload Image",
+                        subtitle: "Choose from your gallery",
                         icon: Icons.image_outlined,
                         isCamera: false,
-                        onTap: () {},
+                        onTap: () {
+                          context.push(AppRoutes.upload);
+                        },
                       ),
                     ),
                   ],

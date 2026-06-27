@@ -2,8 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 class CameraHeader extends StatelessWidget {
+  final String title;
+  final bool showBack;
+  final bool showHelp;
+
   const CameraHeader({
     super.key,
+    this.title = "Capture Leaf Image",
+    this.showBack = true,
+    this.showHelp = true,
   });
 
   @override
@@ -20,10 +27,15 @@ class CameraHeader extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           /// Back Button
-          _CircleButton(
-            icon: Icons.arrow_back_ios_new_rounded,
-            onTap: () => context.pop(),
-          ),
+          showBack
+              ? _CircleButton(
+                  icon: Icons.arrow_back_ios_new_rounded,
+                  onTap: () => context.pop(),
+                )
+              : const SizedBox(
+                  width: 56,
+                  height: 56,
+                ),
 
           const SizedBox(width: 18),
 
@@ -69,9 +81,10 @@ class CameraHeader extends StatelessWidget {
 
                 const SizedBox(height: 4),
 
-                const Text(
-                  'Capture Leaf Image',
-                  style: TextStyle(
+                Text(
+                  title,
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
                     fontSize: 17,
                     fontWeight: FontWeight.w500,
                     color: Color(0xFF6B7280),
@@ -84,9 +97,14 @@ class CameraHeader extends StatelessWidget {
           const SizedBox(width: 18),
 
           /// Help Button
-          const _CircleButton(
-            icon: Icons.help_outline_rounded,
-          ),
+          showHelp
+              ? const _CircleButton(
+                  icon: Icons.help_outline_rounded,
+                )
+              : const SizedBox(
+                  width: 56,
+                  height: 56,
+                ),
         ],
       ),
     );
