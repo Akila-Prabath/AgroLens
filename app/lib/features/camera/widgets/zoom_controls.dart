@@ -1,22 +1,30 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../providers/camera_provider.dart';
+class ZoomControls extends StatelessWidget {
+  final double zoomLevel;
+  final bool isFlashOn;
 
-class ZoomControls extends ConsumerWidget {
-  const ZoomControls({super.key});
+  final VoidCallback? onZoomIn;
+  final VoidCallback? onZoomOut;
+  final VoidCallback? onFlashToggle;
+
+  const ZoomControls({
+    super.key,
+    required this.zoomLevel,
+    this.isFlashOn = false,
+    this.onZoomIn,
+    this.onZoomOut,
+    this.onFlashToggle,
+  });
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final cameraState = ref.watch(cameraProvider);
-    final notifier = ref.read(cameraProvider.notifier);
-
+  Widget build(BuildContext context) {
     return Container(
-      width: 72,
-      padding: const EdgeInsets.symmetric(vertical: 14),
+      width: 58,
+      padding: const EdgeInsets.symmetric(vertical: 10),
       decoration: BoxDecoration(
         color: Colors.black.withOpacity(0.45),
-        borderRadius: BorderRadius.circular(36),
+        borderRadius: BorderRadius.circular(30),
         border: Border.all(
           color: Colors.white24,
         ),
@@ -24,64 +32,72 @@ class ZoomControls extends ConsumerWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          /// Zoom +
+          /// Zoom In
           _CircleButton(
             icon: Icons.add,
-            onTap: notifier.zoomIn,
+            onTap: onZoomIn,
           ),
 
-          const SizedBox(height: 16),
+          const SizedBox(height: 8),
 
-          Text(
-            "${cameraState.zoomLevel.toStringAsFixed(1)}x",
-            style: const TextStyle(
-              color: Color(0xFF4CAF50),
-              fontSize: 20,
-              fontWeight: FontWeight.w700,
+          AnimatedSwitcher(
+            duration: const Duration(milliseconds: 200),
+            child: Text(
+              "${zoomLevel.toStringAsFixed(1)}x",
+              key: ValueKey(zoomLevel),
+              style: const TextStyle(
+                color: Color(0xFF4CAF50),
+                fontSize: 15,
+                fontWeight: FontWeight.w700,
+              ),
             ),
           ),
 
-          const SizedBox(height: 16),
+          const SizedBox(height: 8),
 
-          /// Zoom -
+          /// Zoom Out
           _CircleButton(
             icon: Icons.remove,
-            onTap: notifier.zoomOut,
+            onTap: onZoomOut,
           ),
 
           const Padding(
-            padding: EdgeInsets.symmetric(vertical: 16),
+            padding: EdgeInsets.symmetric(vertical: 8),
             child: Divider(
               color: Colors.white24,
               thickness: 1,
-              indent: 14,
-              endIndent: 14,
+              indent: 10,
+              endIndent: 10,
             ),
           ),
 
           /// Flash
           InkWell(
-            borderRadius: BorderRadius.circular(30),
-            onTap: notifier.toggleFlash,
+            borderRadius: BorderRadius.circular(20),
+            onTap: onFlashToggle,
             child: Column(
               children: [
-                Icon(
-                  cameraState.isFlashOn
-                      ? Icons.flash_on_rounded
-                      : Icons.flash_off_rounded,
-                  color: cameraState.isFlashOn
-                      ? Colors.amber
-                      : Colors.white,
-                  size: 26,
+                AnimatedSwitcher(
+                  duration: const Duration(milliseconds: 250),
+                  child: Icon(
+                    isFlashOn
+                        ? Icons.flash_on_rounded
+                        : Icons.flash_off_rounded,
+                    key: ValueKey(isFlashOn),
+                    color: isFlashOn
+                        ? Colors.amber
+                        : Colors.white,
+                    size: 22,
+                  ),
                 ),
 
-                const SizedBox(height: 6),
+                const SizedBox(height: 4),
 
-                const Text(
-                  "Flash",
-                  style: TextStyle(
+                Text(
+                  isFlashOn ? "On" : "Flash",
+                  style: const TextStyle(
                     color: Colors.white,
-                    fontSize: 12,
+                    fontSize: 10,
                     fontWeight: FontWeight.w500,
                   ),
                 ),
@@ -96,26 +112,26 @@ class ZoomControls extends ConsumerWidget {
 
 class _CircleButton extends StatelessWidget {
   final IconData icon;
-  final VoidCallback onTap;
+  final VoidCallback? onTap;
 
   const _CircleButton({
     required this.icon,
-    required this.onTap,
+    this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      borderRadius: BorderRadius.circular(50),
       onTap: onTap,
+      borderRadius: BorderRadius.circular(50),
       child: SizedBox(
-        width: 40,
-        height: 40,
+        width: 32,
+        height: 32,
         child: Center(
           child: Icon(
             icon,
             color: Colors.white,
-            size: 28,
+            size: 22,
           ),
         ),
       ),

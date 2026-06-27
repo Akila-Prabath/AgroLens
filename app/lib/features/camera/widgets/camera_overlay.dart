@@ -12,27 +12,22 @@ class CameraOverlay extends StatelessWidget {
         final width = constraints.maxWidth;
         final height = constraints.maxHeight;
 
-        final frameWidth = width * 0.70;
-        final frameHeight = height * 0.62;
-
         return Stack(
           children: [
-            /// ==========================
             /// Instruction Banner
-            /// ==========================
             Positioned(
-              top: 30,
+              top: 26,
               left: 0,
               right: 0,
               child: Center(
                 child: Container(
                   padding: const EdgeInsets.symmetric(
-                    horizontal: 22,
-                    vertical: 16,
+                    horizontal: 18,
+                    vertical: 12,
                   ),
                   decoration: BoxDecoration(
-                    color: Colors.black.withOpacity(0.38),
-                    borderRadius: BorderRadius.circular(22),
+                    color: Colors.black.withOpacity(0.40),
+                    borderRadius: BorderRadius.circular(18),
                   ),
                   child: const Row(
                     mainAxisSize: MainAxisSize.min,
@@ -40,18 +35,19 @@ class CameraOverlay extends StatelessWidget {
                       Icon(
                         Icons.eco_outlined,
                         color: Colors.white,
-                        size: 28,
+                        size: 22,
                       ),
 
-                      SizedBox(width: 12),
+                      SizedBox(width: 8),
 
                       Text(
-                        'Place the affected leaf\nwithin the frame',
+                        "Place the affected leaf\nwithin the frame",
+                        textAlign: TextAlign.center,
                         style: TextStyle(
                           color: Colors.white,
-                          fontSize: 20,
+                          fontSize: 16,
                           fontWeight: FontWeight.w600,
-                          height: 1.4,
+                          height: 1.3,
                         ),
                       ),
                     ],
@@ -60,99 +56,13 @@ class CameraOverlay extends StatelessWidget {
               ),
             ),
 
-            /// ==========================
-            /// Scan Frame
-            /// ==========================
-            Center(
-              child: SizedBox(
-                width: frameWidth,
-                height: frameHeight,
-                child: const _ScannerFrame(),
-              ),
-            ),
-
-            /// ==========================
-            /// Zoom Control
-            /// ==========================
+            /// Scanner Frame
             Positioned(
-              right: 22,
-              top: height * 0.33,
-              child: Container(
-                width: 70,
-                height: 220,
-                decoration: BoxDecoration(
-                  color: Colors.black.withOpacity(0.55),
-                  borderRadius: BorderRadius.circular(35),
-                  border: Border.all(
-                    color: Colors.white24,
-                  ),
-                ),
-                child: Column(
-                  mainAxisAlignment:
-                      MainAxisAlignment.spaceEvenly,
-                  children: const [
-                    Icon(
-                      Icons.add,
-                      color: Colors.white,
-                      size: 34,
-                    ),
-
-                    Text(
-                      '1.0x',
-                      style: TextStyle(
-                        color: Colors.green,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20,
-                      ),
-                    ),
-
-                    Icon(
-                      Icons.remove,
-                      color: Colors.white,
-                      size: 34,
-                    ),
-                  ],
-                ),
-              ),
-            ),
-
-            /// ==========================
-            /// Flash Button
-            /// ==========================
-            Positioned(
-              right: 20,
-              bottom: 80,
-              child: Column(
-                children: [
-                  Container(
-                    width: 72,
-                    height: 72,
-                    decoration: BoxDecoration(
-                      color: Colors.black.withOpacity(0.55),
-                      shape: BoxShape.circle,
-                      border: Border.all(
-                        color: Colors.white24,
-                      ),
-                    ),
-                    child: const Icon(
-                      Icons.flashlight_on_outlined,
-                      color: Colors.white,
-                      size: 34,
-                    ),
-                  ),
-
-                  const SizedBox(height: 10),
-
-                  const Text(
-                    'Flash',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 18,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                ],
-              ),
+              left: width * 0.08,
+              right: width * 0.18,
+              top: height * 0.16,
+              bottom: height * 0.14,
+              child: const _ScannerFrame(),
             ),
           ],
         );
@@ -166,17 +76,11 @@ class _ScannerFrame extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const double corner = 70;
-    const double thickness = 7;
-    const Radius radius = Radius.circular(22);
-
-    return Stack(
+    return const Stack(
       children: [
         Align(
           alignment: Alignment.topLeft,
           child: _Corner(
-            width: corner,
-            height: corner,
             top: true,
             left: true,
           ),
@@ -185,8 +89,6 @@ class _ScannerFrame extends StatelessWidget {
         Align(
           alignment: Alignment.topRight,
           child: _Corner(
-            width: corner,
-            height: corner,
             top: true,
             left: false,
           ),
@@ -195,8 +97,6 @@ class _ScannerFrame extends StatelessWidget {
         Align(
           alignment: Alignment.bottomLeft,
           child: _Corner(
-            width: corner,
-            height: corner,
             top: false,
             left: true,
           ),
@@ -205,8 +105,6 @@ class _ScannerFrame extends StatelessWidget {
         Align(
           alignment: Alignment.bottomRight,
           child: _Corner(
-            width: corner,
-            height: corner,
             top: false,
             left: false,
           ),
@@ -217,63 +115,58 @@ class _ScannerFrame extends StatelessWidget {
 }
 
 class _Corner extends StatelessWidget {
-  final double width;
-  final double height;
   final bool top;
   final bool left;
 
   const _Corner({
-    required this.width,
-    required this.height,
     required this.top,
     required this.left,
   });
 
   @override
   Widget build(BuildContext context) {
+    const double size = 60;
+    const double thickness = 5;
+
     return Container(
-      width: width,
-      height: height,
+      width: size,
+      height: size,
       decoration: BoxDecoration(
         border: Border(
           top: top
               ? const BorderSide(
                   color: Colors.white,
-                  width: 7,
+                  width: thickness,
                 )
               : BorderSide.none,
           bottom: !top
               ? const BorderSide(
                   color: Colors.white,
-                  width: 7,
+                  width: thickness,
                 )
               : BorderSide.none,
           left: left
               ? const BorderSide(
                   color: Colors.white,
-                  width: 7,
+                  width: thickness,
                 )
               : BorderSide.none,
           right: !left
               ? const BorderSide(
                   color: Colors.white,
-                  width: 7,
+                  width: thickness,
                 )
               : BorderSide.none,
         ),
         borderRadius: BorderRadius.only(
-          topLeft: top && left
-              ? const Radius.circular(22)
-              : Radius.zero,
-          topRight: top && !left
-              ? const Radius.circular(22)
-              : Radius.zero,
-          bottomLeft: !top && left
-              ? const Radius.circular(22)
-              : Radius.zero,
-          bottomRight: !top && !left
-              ? const Radius.circular(22)
-              : Radius.zero,
+          topLeft:
+              top && left ? const Radius.circular(18) : Radius.zero,
+          topRight:
+              top && !left ? const Radius.circular(18) : Radius.zero,
+          bottomLeft:
+              !top && left ? const Radius.circular(18) : Radius.zero,
+          bottomRight:
+              !top && !left ? const Radius.circular(18) : Radius.zero,
         ),
       ),
     );
