@@ -1,9 +1,12 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+
+import '../../analysis/presentation/analysis_screen.dart';
 
 class PreviewScreen extends StatelessWidget {
-  final File image;
+  final XFile image;
 
   const PreviewScreen({
     super.key,
@@ -24,7 +27,7 @@ class PreviewScreen extends StatelessWidget {
                 minScale: 1,
                 maxScale: 4,
                 child: Image.file(
-                  image,
+                  File(image.path),
                   fit: BoxFit.contain,
                 ),
               ),
@@ -60,7 +63,7 @@ class PreviewScreen extends StatelessWidget {
               ),
             ),
 
-            /// Bottom Buttons
+            /// Bottom Action Buttons
             Positioned(
               left: 20,
               right: 20,
@@ -79,6 +82,7 @@ class PreviewScreen extends StatelessWidget {
                 ),
                 child: Row(
                   children: [
+                    /// Retake
                     Expanded(
                       child: OutlinedButton.icon(
                         onPressed: () {
@@ -101,12 +105,19 @@ class PreviewScreen extends StatelessWidget {
 
                     const SizedBox(width: 16),
 
+                    /// Analyze Image
                     Expanded(
                       flex: 2,
                       child: ElevatedButton.icon(
                         onPressed: () {
-                          // TODO:
-                          // Navigate Analysis Screen
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => AnalysisScreen(
+                                image: image,
+                              ),
+                            ),
+                          );
                         },
                         icon: const Icon(Icons.auto_awesome),
                         label: const Text("Analyze Image"),

@@ -1,23 +1,29 @@
-import 'dart:io';
-
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
 
+/// ======================================================
+/// Upload State
+/// ======================================================
+
 class UploadState {
-  final File? image;
+  final XFile? image;
 
   const UploadState({
     this.image,
   });
 
   UploadState copyWith({
-    File? image,
+    XFile? image,
   }) {
     return UploadState(
       image: image ?? this.image,
     );
   }
 }
+
+/// ======================================================
+/// Upload Notifier
+/// ======================================================
 
 class UploadNotifier extends Notifier<UploadState> {
   final ImagePicker _picker = ImagePicker();
@@ -27,29 +33,59 @@ class UploadNotifier extends Notifier<UploadState> {
     return const UploadState();
   }
 
-  Future<File?> pickFromGallery() async {
-    final XFile? picked = await _picker.pickImage(
-      source: ImageSource.gallery,
-      imageQuality: 95,
-    );
+  /// Pick image from Gallery
+  Future<XFile?> pickFromGallery() async {
+    try {
+      final XFile? picked = await _picker.pickImage(
+        source: ImageSource.gallery,
+        imageQuality: 95,
+      );
 
-    if (picked == null) {
+      if (picked == null) {
+        return null;
+      }
+
+      state = state.copyWith(
+        image: picked,
+      );
+
+      return picked;
+    } catch (e) {
       return null;
     }
-
-    final file = File(picked.path);
-
-    state = state.copyWith(
-      image: file,
-    );
-
-    return file;
   }
 
+  /// Pick image from Camera (optional)
+  Future<XFile?> pickFromCamera() async {
+    try {
+      final XFile? picked = await _picker.pickImage(
+        source: ImageSource.camera,
+        imageQuality: 95,
+      );
+
+      if (picked == null) {
+        return null;
+      }
+
+      state = state.copyWith(
+        image: picked,
+      );
+
+      return picked;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  /// Clear selected image
   void clear() {
     state = const UploadState();
   }
 }
+
+/// ======================================================
+/// Provider
+/// ======================================================
 
 final uploadProvider =
     NotifierProvider<UploadNotifier, UploadState>(

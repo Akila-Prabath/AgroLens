@@ -1,9 +1,34 @@
-import 'package:flutter/material.dart';
+import 'dart:io';
 
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:path_provider/path_provider.dart';
+
+import '../presentation/preview_screen.dart';
 import 'upload_card.dart';
 
 class RecentUploads extends StatelessWidget {
   const RecentUploads({super.key});
+
+  /// Convert asset image to XFile so it can be opened
+  /// in the PreviewScreen just like gallery/camera images.
+  Future<XFile> _assetToXFile(String assetPath) async {
+    final byteData = await rootBundle.load(assetPath);
+
+    final tempDir = await getTemporaryDirectory();
+
+    final file = File(
+      '${tempDir.path}/${assetPath.split('/').last}',
+    );
+
+    await file.writeAsBytes(
+      byteData.buffer.asUint8List(),
+      flush: true,
+    );
+
+    return XFile(file.path);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +39,8 @@ class RecentUploads extends StatelessWidget {
         physics: const BouncingScrollPhysics(),
         padding: const EdgeInsets.symmetric(horizontal: 2),
         itemCount: _items.length,
-        separatorBuilder: (_, _) => const SizedBox(width: 12),
+        separatorBuilder: (_, __) =>
+            const SizedBox(width: 12),
         itemBuilder: (context, index) {
           final item = _items[index];
 
@@ -23,9 +49,32 @@ class RecentUploads extends StatelessWidget {
             diseaseName: item.name,
             cropName: item.crop,
             date: item.date,
-            onTap: () {
-              // TODO:
-              // Open Preview Screen
+            onTap: () async {
+              try {
+                final XFile image =
+                    await _assetToXFile(item.image);
+
+                if (!context.mounted) return;
+
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => PreviewScreen(
+                      image: image,
+                    ),
+                  ),
+                );
+              } catch (e) {
+                if (!context.mounted) return;
+
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text(
+                      'Unable to open image.\n$e',
+                    ),
+                  ),
+                );
+              }
             },
           );
         },

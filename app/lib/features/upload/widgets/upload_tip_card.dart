@@ -68,7 +68,7 @@ class UploadTipCard extends StatelessWidget {
                   "Choose a Clear Leaf Image",
                   style: TextStyle(
                     color: Colors.white,
-                    fontSize: 20,
+                    fontSize: 16,
                     fontWeight:
                         FontWeight.bold,
                     height: 1.2,
@@ -83,7 +83,7 @@ class UploadTipCard extends StatelessWidget {
                     color: Colors.white.withOpacity(
                       .92,
                     ),
-                    fontSize: 15,
+                    fontSize: 12,
                     height: 1.5,
                   ),
                 ),
@@ -101,7 +101,7 @@ class UploadTipCard extends StatelessWidget {
                         "Learn More",
                         style: TextStyle(
                           color: Colors.white,
-                          fontSize: 15,
+                          fontSize: 14,
                           fontWeight:
                               FontWeight.w600,
                         ),

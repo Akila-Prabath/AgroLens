@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+//import 'package:image_picker/image_picker.dart';
 
 import '../../camera/presentation/camera_screen.dart';
 import '../../camera/widgets/camera_header.dart';
@@ -20,20 +21,12 @@ class UploadScreen extends ConsumerWidget {
 
       body: SafeArea(
         child: SingleChildScrollView(
-          padding: const EdgeInsets.fromLTRB(
-            16,
-            12,
-            16,
-            16,
-          ),
+          padding: const EdgeInsets.fromLTRB(16, 12, 16, 16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               /// Header
-              const CameraHeader(
-                title: "Upload Leaf Image",
-                showBack: true,
-              ),
+              const CameraHeader(title: "Upload Leaf Image", showBack: true),
 
               const SizedBox(height: 20),
 
@@ -51,18 +44,15 @@ class UploadScreen extends ConsumerWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (_) => PreviewScreen(
-                        image: image,
-                      ),
+                      builder: (_) => PreviewScreen(image: image),
                     ),
                   );
                 },
+
                 onCamera: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(
-                      builder: (_) => const CameraScreen(),
-                    ),
+                    MaterialPageRoute(builder: (_) => const CameraScreen()),
                   );
                 },
               ),
@@ -71,8 +61,7 @@ class UploadScreen extends ConsumerWidget {
 
               /// Recent Images
               Row(
-                mainAxisAlignment:
-                    MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   const Text(
                     "Recent Images",
@@ -91,8 +80,7 @@ class UploadScreen extends ConsumerWidget {
                     style: TextButton.styleFrom(
                       padding: EdgeInsets.zero,
                       minimumSize: const Size(50, 30),
-                      tapTargetSize:
-                          MaterialTapTargetSize.shrinkWrap,
+                      tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                     ),
                     child: const Text(
                       "View All",
@@ -120,9 +108,7 @@ class UploadScreen extends ConsumerWidget {
         ),
       ),
 
-      bottomNavigationBar: const HomeBottomNav(
-        currentIndex: 2,
-      ),
+      bottomNavigationBar: const HomeBottomNav(currentIndex: 2),
     );
   }
 }

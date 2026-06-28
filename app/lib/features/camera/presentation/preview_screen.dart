@@ -2,7 +2,9 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:image_picker/image_picker.dart';
 
+import '../../analysis/presentation/analysis_screen.dart';
 import '../widgets/preview_bottom_bar.dart';
 
 class PreviewScreen extends StatelessWidget {
@@ -70,16 +72,14 @@ class PreviewScreen extends StatelessWidget {
                       color: Colors.white,
                       size: 20,
                     ),
-                    onPressed: () {
-                      context.pop();
-                    },
+                    onPressed: () => context.pop(),
                   ),
                 ),
               ),
             ),
           ),
 
-          /// Bottom Information
+          /// Bottom Sheet
           Align(
             alignment: Alignment.bottomCenter,
             child: Container(
@@ -95,12 +95,12 @@ class PreviewScreen extends StatelessWidget {
                   top: Radius.circular(30),
                 ),
               ),
-
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment:
                     CrossAxisAlignment.start,
                 children: [
+                  /// Handle
                   const Center(
                     child: SizedBox(
                       width: 55,
@@ -112,6 +112,7 @@ class PreviewScreen extends StatelessWidget {
 
                   const SizedBox(height: 18),
 
+                  /// Title
                   const Text(
                     "Ready for Analysis",
                     style: TextStyle(
@@ -123,6 +124,7 @@ class PreviewScreen extends StatelessWidget {
 
                   const SizedBox(height: 10),
 
+                  /// Description
                   const Text(
                     "Ensure the affected leaf is clearly visible before starting the AI analysis.",
                     style: TextStyle(
@@ -134,8 +136,21 @@ class PreviewScreen extends StatelessWidget {
 
                   const SizedBox(height: 28),
 
+                  /// Bottom Buttons
                   PreviewBottomBar(
-                    imagePath: imagePath,
+                    onRetake: () {
+                      context.pop();
+                    },
+                    onAnalyze: () {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => AnalysisScreen(
+                            image: XFile(imagePath),
+                          ),
+                        ),
+                      );
+                    },
                   ),
                 ],
               ),
