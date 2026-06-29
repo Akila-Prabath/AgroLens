@@ -33,8 +33,8 @@ class CameraHeader extends StatelessWidget {
                   onTap: () => context.pop(),
                 )
               : const SizedBox(
-                  width: 56,
-                  height: 56,
+                  width: 38,
+                  height: 38,
                 ),
 
           const SizedBox(width: 18),
@@ -79,13 +79,13 @@ class CameraHeader extends StatelessWidget {
                   ],
                 ),
 
-                const SizedBox(height: 4),
+                const SizedBox(height: 2),
 
                 Text(
                   title,
                   textAlign: TextAlign.center,
                   style: const TextStyle(
-                    fontSize: 17,
+                    fontSize: 14,
                     fontWeight: FontWeight.w500,
                     color: Color(0xFF6B7280),
                   ),
@@ -94,7 +94,7 @@ class CameraHeader extends StatelessWidget {
             ),
           ),
 
-          const SizedBox(width: 18),
+          const SizedBox(width: 15),
 
           /// Help Button
           showHelp
@@ -102,8 +102,8 @@ class CameraHeader extends StatelessWidget {
                   icon: Icons.help_outline_rounded,
                 )
               : const SizedBox(
-                  width: 56,
-                  height: 56,
+                  width: 38,
+                  height: 38,
                 ),
         ],
       ),
@@ -131,14 +131,14 @@ class _CircleButton extends StatelessWidget {
         borderRadius: BorderRadius.circular(18),
         onTap: onTap,
         child: Container(
-          width: 56,
-          height: 56,
+          width: 42,
+          height: 42,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(18),
           ),
           child: Icon(
             icon,
-            size: 28,
+            size: 24,
             color: const Color(0xFF1F2937),
           ),
         ),

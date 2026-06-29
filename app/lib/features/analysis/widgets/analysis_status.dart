@@ -13,7 +13,6 @@ class AnalysisStatus extends StatelessWidget {
     "Processing Image",
     "Detecting Crop",
     "Identifying Disease",
-    "Calculating Confidence",
     "Preparing Recommendation",
   ];
 
@@ -76,8 +75,8 @@ class _StatusTile extends StatelessWidget {
     switch (status) {
       case AnalysisStep.completed:
         leading = Container(
-          width: 28,
-          height: 28,
+          width: 16,
+          height: 16,
           decoration: const BoxDecoration(
             color: Color(0xFF2E7D32),
             shape: BoxShape.circle,
@@ -85,15 +84,15 @@ class _StatusTile extends StatelessWidget {
           child: const Icon(
             Icons.check,
             color: Colors.white,
-            size: 18,
+            size: 14,
           ),
         );
         break;
 
       case AnalysisStep.processing:
         leading = const SizedBox(
-          width: 28,
-          height: 28,
+          width: 16,
+          height: 16,
           child: CircularProgressIndicator(
             strokeWidth: 3,
             color: Color(0xFF2E7D32),
@@ -103,8 +102,8 @@ class _StatusTile extends StatelessWidget {
 
       case AnalysisStep.pending:
         leading = Container(
-          width: 28,
-          height: 28,
+          width: 16,
+          height: 16,
           decoration: BoxDecoration(
             shape: BoxShape.circle,
             border: Border.all(
@@ -126,7 +125,7 @@ class _StatusTile extends StatelessWidget {
           child: Text(
             title,
             style: TextStyle(
-              fontSize: 16,
+              fontSize: 14,
               fontWeight: status == AnalysisStep.processing
                   ? FontWeight.w700
                   : FontWeight.w500,
@@ -141,7 +140,7 @@ class _StatusTile extends StatelessWidget {
           const Icon(
             Icons.done_all_rounded,
             color: Color(0xFF2E7D32),
-            size: 18,
+            size: 14,
           ),
 
         if (status == AnalysisStep.processing)
@@ -150,7 +149,7 @@ class _StatusTile extends StatelessWidget {
             style: TextStyle(
               color: Color(0xFF2E7D32),
               fontWeight: FontWeight.w600,
-              fontSize: 13,
+              fontSize: 12,
             ),
           ),
       ],

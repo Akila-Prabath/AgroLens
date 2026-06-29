@@ -2,17 +2,19 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../data/datasources/disease_local_data_source.dart';
 import '../../data/repositories/disease_repository.dart';
+import '../services/image_service.dart';
 import '../services/label_service.dart';
 import '../services/prediction_service.dart';
 import '../services/tflite_service.dart';
-import '../services/image_service.dart';
 
-final diseaseRepositoryProvider =
-    Provider<DiseaseRepository>((ref) {
-  return DiseaseRepository(
-    DiseaseLocalDataSource(),
-  );
-});
+/// ===============================
+/// Services
+/// ===============================
+
+final imageServiceProvider =
+    Provider<ImageService>(
+  (ref) => ImageService(),
+);
 
 final tfliteServiceProvider =
     Provider<TFLiteService>(
@@ -24,23 +26,47 @@ final labelServiceProvider =
   (ref) => LabelService(),
 );
 
+/// ===============================
+/// Prediction Service
+/// ===============================
+
 final predictionServiceProvider =
     Provider<PredictionService>(
   (ref) {
     return PredictionService(
-      tfliteService:
-          ref.read(
+      tfliteService: ref.read(
         tfliteServiceProvider,
       ),
-      labelService:
-          ref.read(
+      imageService: ref.read(
+        imageServiceProvider,
+      ),
+      labelService: ref.read(
         labelServiceProvider,
       ),
     );
   },
 );
 
-final imageServiceProvider =
-    Provider<ImageService>(
-  (ref) => ImageService(),
+/// ===============================
+/// Data Source
+/// ===============================
+
+final diseaseLocalDataSourceProvider =
+    Provider<DiseaseLocalDataSource>(
+  (ref) => DiseaseLocalDataSource(),
+);
+
+/// ===============================
+/// Repository
+/// ===============================
+
+final diseaseRepositoryProvider =
+    Provider<DiseaseRepository>(
+  (ref) {
+    return DiseaseRepository(
+      ref.read(
+        diseaseLocalDataSourceProvider,
+      ),
+    );
+  },
 );

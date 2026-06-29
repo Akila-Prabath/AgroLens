@@ -15,7 +15,7 @@ class AnalysisImageCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      height: 280,
+      height: 200,
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(28),
@@ -60,8 +60,8 @@ class AnalysisImageCard extends StatelessWidget {
 
           /// AI Badge
           Positioned(
-            top: 16,
-            right: 16,
+            top: 12,
+            right: 12,
             child: Container(
               padding: const EdgeInsets.symmetric(
                 horizontal: 14,
@@ -77,7 +77,7 @@ class AnalysisImageCard extends StatelessWidget {
                   Icon(
                     Icons.auto_awesome,
                     color: Colors.white,
-                    size: 16,
+                    size: 14,
                   ),
 
                   SizedBox(width: 6),
@@ -98,7 +98,7 @@ class AnalysisImageCard extends StatelessWidget {
           /// Bottom Label
           Positioned(
             left: 18,
-            bottom: 18,
+            bottom: 14,
             child: Container(
               padding: const EdgeInsets.symmetric(
                 horizontal: 14,
@@ -114,7 +114,7 @@ class AnalysisImageCard extends StatelessWidget {
                   Icon(
                     Icons.eco,
                     color: Colors.white,
-                    size: 18,
+                    size: 14,
                   ),
 
                   SizedBox(width: 8),
@@ -124,7 +124,7 @@ class AnalysisImageCard extends StatelessWidget {
                     style: TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.w600,
-                      fontSize: 14,
+                      fontSize: 12,
                     ),
                   ),
                 ],

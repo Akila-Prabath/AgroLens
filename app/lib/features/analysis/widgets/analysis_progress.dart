@@ -22,7 +22,7 @@ class AnalysisProgress extends StatelessWidget {
             const Text(
               "AI Analysis Progress",
               style: TextStyle(
-                fontSize: 17,
+                fontSize: 12,
                 fontWeight: FontWeight.w600,
                 color: Color(0xFF1F2937),
               ),
@@ -34,7 +34,7 @@ class AnalysisProgress extends StatelessWidget {
                 "${percent.toInt()}%",
                 key: ValueKey(percent),
                 style: const TextStyle(
-                  fontSize: 17,
+                  fontSize: 12,
                   fontWeight: FontWeight.bold,
                   color: Color(0xFF2E7D32),
                 ),
@@ -43,7 +43,7 @@ class AnalysisProgress extends StatelessWidget {
           ],
         ),
 
-        const SizedBox(height: 14),
+        const SizedBox(height: 12),
 
         /// Progress Bar
         ClipRRect(
@@ -67,14 +67,14 @@ class AnalysisProgress extends StatelessWidget {
           ),
         ),
 
-        const SizedBox(height: 14),
+        const SizedBox(height: 12),
 
         /// Status Text
         Row(
           children: [
             const SizedBox(
-              width: 18,
-              height: 18,
+              width: 12,
+              height: 12,
               child: CircularProgressIndicator(
                 strokeWidth: 2.5,
                 color: Color(0xFF2E7D32),
@@ -90,7 +90,7 @@ class AnalysisProgress extends StatelessWidget {
                   _status(progress),
                   key: ValueKey(_status(progress)),
                   style: const TextStyle(
-                    fontSize: 15,
+                    fontSize: 12,
                     color: Color(0xFF6B7280),
                     fontWeight: FontWeight.w500,
                   ),
@@ -108,18 +108,14 @@ class AnalysisProgress extends StatelessWidget {
       return "Processing uploaded image...";
     }
 
-    if (progress < 0.40) {
+    if (progress < 0.50) {
       return "Detecting crop type...";
     }
 
-    if (progress < 0.60) {
+    if (progress < 0.70) {
       return "Identifying leaf disease...";
     }
-
-    if (progress < 0.80) {
-      return "Calculating confidence score...";
-    }
-
+    
     if (progress < 1.0) {
       return "Generating recommendations...";
     }

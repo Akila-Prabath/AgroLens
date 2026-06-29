@@ -65,14 +65,14 @@ class PreviewScreen extends StatelessWidget {
 
             /// Bottom Action Buttons
             Positioned(
-              left: 20,
-              right: 20,
-              bottom: 30,
+              left: 10,
+              right: 10,
+              bottom: 20,
               child: Container(
-                padding: const EdgeInsets.all(18),
+                padding: const EdgeInsets.all(10),
                 decoration: BoxDecoration(
                   color: Colors.white,
-                  borderRadius: BorderRadius.circular(26),
+                  borderRadius: BorderRadius.circular(15),
                   boxShadow: [
                     BoxShadow(
                       color: Colors.black.withOpacity(.15),
@@ -95,15 +95,15 @@ class PreviewScreen extends StatelessWidget {
                           side: const BorderSide(
                             color: Color(0xFF2E7D32),
                           ),
-                          minimumSize: const Size.fromHeight(56),
+                          minimumSize: const Size.fromHeight(48),
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(16),
+                            borderRadius: BorderRadius.circular(15),
                           ),
                         ),
                       ),
                     ),
 
-                    const SizedBox(width: 16),
+                    const SizedBox(width: 10),
 
                     /// Analyze Image
                     Expanded(
@@ -124,10 +124,10 @@ class PreviewScreen extends StatelessWidget {
                         style: ElevatedButton.styleFrom(
                           backgroundColor: const Color(0xFF2E7D32),
                           foregroundColor: Colors.white,
-                          minimumSize: const Size.fromHeight(56),
+                          minimumSize: const Size.fromHeight(48),
                           elevation: 0,
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(16),
+                            borderRadius: BorderRadius.circular(15),
                           ),
                         ),
                       ),

@@ -39,7 +39,7 @@ class RecentUploads extends StatelessWidget {
         physics: const BouncingScrollPhysics(),
         padding: const EdgeInsets.symmetric(horizontal: 2),
         itemCount: _items.length,
-        separatorBuilder: (_, __) =>
+        separatorBuilder: (_, _) =>
             const SizedBox(width: 12),
         itemBuilder: (context, index) {
           final item = _items[index];
