@@ -1,7 +1,11 @@
 {
   "bacterial_leaf_blight": {
     "name": "Bacterial Leaf Blight",
-    "description": "A serious bacterial disease caused by Xanthomonas oryzae that affects rice leaves and reduces crop yield.",
+    "scientificName": "Xanthomonas oryzae pv. oryzae",
+    "cropName": "Rice",
+    "growthStage": "Vegetative Stage",
+    "severity": "High",
+    "description": "A serious bacterial disease caused by Xanthomonas oryzae that affects rice leaves and significantly reduces crop yield.",
     "symptoms": [
       "Yellowing of leaf edges",
       "Drying of leaf tips",
@@ -19,8 +23,8 @@
       "Avoid excessive nitrogen fertilizer"
     ],
     "chemicals": [
-      "Copper hydroxide",
-      "Copper oxychloride"
+      "Copper Hydroxide",
+      "Copper Oxychloride"
     ],
     "prevention": [
       "Use disease-free seeds",
@@ -32,7 +36,11 @@
 
   "blast": {
     "name": "Rice Blast",
-    "description": "A fungal disease caused by Magnaporthe oryzae that can affect leaves, stems and panicles.",
+    "scientificName": "Magnaporthe oryzae",
+    "cropName": "Rice",
+    "growthStage": "Tillering Stage",
+    "severity": "High",
+    "description": "A destructive fungal disease affecting rice leaves, stems and panicles, causing severe yield loss.",
     "symptoms": [
       "Diamond-shaped lesions",
       "Gray centers with brown borders",
@@ -64,7 +72,11 @@
 
   "brown_spot": {
     "name": "Brown Spot",
-    "description": "A fungal disease caused by Bipolaris oryzae resulting in brown lesions on rice leaves.",
+    "scientificName": "Bipolaris oryzae",
+    "cropName": "Rice",
+    "growthStage": "Tillering Stage",
+    "severity": "Medium",
+    "description": "A fungal disease caused by Bipolaris oryzae resulting in brown lesions on rice leaves and reduced plant vigor.",
     "symptoms": [
       "Circular brown spots",
       "Dark brown leaf lesions",
@@ -96,6 +108,10 @@
 
   "healthy": {
     "name": "Healthy Rice Plant",
+    "scientificName": "Oryza sativa",
+    "cropName": "Rice",
+    "growthStage": "Healthy Growth",
+    "severity": "Low",
     "description": "The rice plant appears healthy with no visible disease symptoms.",
     "symptoms": [
       "Green healthy leaves",
@@ -124,7 +140,11 @@
 
   "leaf_scald": {
     "name": "Leaf Scald",
-    "description": "A fungal disease characterized by large water-soaked lesions that later become dry and straw colored.",
+    "scientificName": "Microdochium oryzae",
+    "cropName": "Rice",
+    "growthStage": "Booting Stage",
+    "severity": "Medium",
+    "description": "A fungal disease characterized by large water-soaked lesions that later become dry and straw-colored.",
     "symptoms": [
       "Water-soaked lesions",
       "Straw-colored leaf areas",
@@ -153,7 +173,11 @@
 
   "sheath_blight": {
     "name": "Sheath Blight",
-    "description": "A fungal disease caused by Rhizoctonia solani affecting leaf sheaths and reducing yield.",
+    "scientificName": "Rhizoctonia solani",
+    "cropName": "Rice",
+    "growthStage": "Panicle Initiation Stage",
+    "severity": "High",
+    "description": "A fungal disease caused by Rhizoctonia solani affecting leaf sheaths and reducing grain yield.",
     "symptoms": [
       "Oval lesions on leaf sheaths",
       "Brown infection zones",

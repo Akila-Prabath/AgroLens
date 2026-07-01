@@ -21,8 +21,31 @@ class ResultImageCard extends StatelessWidget {
   bool get _isHealthy =>
       diseaseName.toLowerCase().contains("healthy");
 
+  /// ----------------------------------------------------------
+  /// Display Risk Level
+  /// ----------------------------------------------------------
+  String get _displayRiskLevel {
+    if (_isHealthy) {
+      return "Low";
+    }
+
+    if (riskLevel.trim().isNotEmpty) {
+      return riskLevel;
+    }
+
+    if (confidence >= 70) {
+      return "High";
+    }
+
+    if (confidence >= 50) {
+      return "Medium";
+    }
+
+    return "Low";
+  }
+
   Color get _riskColor {
-    switch (riskLevel.toLowerCase()) {
+    switch (_displayRiskLevel.toLowerCase()) {
       case "high":
         return Colors.red;
 
@@ -38,7 +61,7 @@ class ResultImageCard extends StatelessWidget {
   }
 
   Color get _riskBackground {
-    switch (riskLevel.toLowerCase()) {
+    switch (_displayRiskLevel.toLowerCase()) {
       case "high":
         return const Color(0xFFFFEBEE);
 
@@ -68,16 +91,17 @@ class ResultImageCard extends StatelessWidget {
           ),
         ],
       ),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          /// Image
-          Expanded(
-            flex: 3,
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(18),
-              child: AspectRatio(
-                aspectRatio: 1,
+      child: IntrinsicHeight(
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            /// ==========================================================
+            /// Image
+            /// ==========================================================
+            Expanded(
+              flex: 4,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(18),
                 child: imagePath != null
                     ? Image.file(
                         File(imagePath!),
@@ -89,182 +113,181 @@ class ResultImageCard extends StatelessWidget {
                       ),
               ),
             ),
-          ),
 
-          const SizedBox(width: 14),
+            const SizedBox(width: 16),
 
-          /// Details
-          Expanded(
-            flex: 4,
-            child: Column(
-              crossAxisAlignment:
-                  CrossAxisAlignment.start,
-              children: [
-                /// Disease Badge
-                Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 12,
-                    vertical: 8,
-                  ),
-                  decoration: BoxDecoration(
-                    color: _isHealthy
-                        ? const Color(0xFFE8F5E9)
-                        : const Color(0xFFFFEBEE),
-                    borderRadius:
-                        BorderRadius.circular(12),
-                  ),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Icon(
-                        _isHealthy
-                            ? Icons.check_circle
-                            : Icons.warning_rounded,
-                        size: 14,
-                        color: _isHealthy
-                            ? Colors.green
-                            : Colors.red,
-                      ),
-
-                      const SizedBox(width: 6),
-
-                      Text(
-                        _isHealthy
-                            ? "Healthy Leaf"
-                            : "Disease Detected",
-                        style: TextStyle(
+            /// ==========================================================
+            /// Details
+            /// ==========================================================
+            Expanded(
+              flex: 5,
+              child: Column(
+                crossAxisAlignment:
+                    CrossAxisAlignment.start,
+                children: [
+                  /// Status Badge
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 12,
+                      vertical: 8,
+                    ),
+                    decoration: BoxDecoration(
+                      color: _isHealthy
+                          ? const Color(0xFFE8F5E9)
+                          : const Color(0xFFFFEBEE),
+                      borderRadius:
+                          BorderRadius.circular(12),
+                    ),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Icon(
+                          _isHealthy
+                              ? Icons.check_circle
+                              : Icons.warning_rounded,
+                          size: 14,
                           color: _isHealthy
                               ? Colors.green
                               : Colors.red,
-                          fontWeight:
-                              FontWeight.bold,
-                          fontSize: 12,
+                        ),
+                        const SizedBox(width: 6),
+                        Text(
+                          _isHealthy
+                              ? "Healthy Leaf"
+                              : "Disease Detected",
+                          style: TextStyle(
+                            color: _isHealthy
+                                ? Colors.green
+                                : Colors.red,
+                            fontWeight:
+                                FontWeight.bold,
+                            fontSize: 12,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+
+                  const SizedBox(height: 12),
+
+                  /// Disease Name
+                  Text(
+                    diseaseName,
+                    style: const TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: Color(0xFF1F2937),
+                    ),
+                  ),
+
+                  const SizedBox(height: 6),
+
+                  /// Scientific Name
+                  Row(
+                    crossAxisAlignment:
+                        CrossAxisAlignment.start,
+                    children: [
+                      const Icon(
+                        Icons.eco_rounded,
+                        size: 16,
+                        color: Color(0xFF2E7D32),
+                      ),
+                      const SizedBox(width: 6),
+                      Expanded(
+                        child: Text(
+                          scientificName,
+                          style: const TextStyle(
+                            fontSize: 13,
+                            color: Color(0xFF6B7280),
+                            fontStyle:
+                                FontStyle.italic,
+                          ),
                         ),
                       ),
                     ],
                   ),
-                ),
 
-                const SizedBox(height: 12),
+                  const Spacer(),
 
-                /// Disease Name
-                Text(
-                  diseaseName,
-                  style: const TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    color: Color(0xFF1F2937),
-                  ),
-                ),
-
-                const SizedBox(height: 6),
-
-                /// Scientific Name
-                Row(
-                  crossAxisAlignment:
-                      CrossAxisAlignment.start,
-                  children: [
-                    const Icon(
-                      Icons.eco_rounded,
-                      size: 16,
-                      color: Color(0xFF2E7D32),
-                    ),
-
-                    const SizedBox(width: 6),
-
-                    Expanded(
-                      child: Text(
-                        scientificName,
-                        style: const TextStyle(
+                  /// Confidence
+                  Row(
+                    mainAxisAlignment:
+                        MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Text(
+                        "Confidence",
+                        style: TextStyle(
                           fontSize: 13,
-                          color: Color(0xFF6B7280),
-                          fontStyle:
-                              FontStyle.italic,
+                          color: Color(0xFF4B5563),
                         ),
                       ),
-                    ),
-                  ],
-                ),
-
-                const SizedBox(height: 14),
-
-                /// Confidence
-                Row(
-                  mainAxisAlignment:
-                      MainAxisAlignment.spaceBetween,
-                  children: [
-                    const Text(
-                      "Confidence",
-                      style: TextStyle(
-                        fontSize: 13,
-                        color: Color(0xFF4B5563),
+                      Text(
+                        "${confidence.toStringAsFixed(1)}%",
+                        style: const TextStyle(
+                          fontWeight:
+                              FontWeight.bold,
+                          color: Color(0xFF168A2F),
+                          fontSize: 14,
+                        ),
                       ),
-                    ),
-
-                    Text(
-                      "${confidence.toStringAsFixed(1)}%",
-                      style: const TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Color(0xFF168A2F),
-                        fontSize: 14,
-                      ),
-                    ),
-                  ],
-                ),
-
-                const SizedBox(height: 8),
-
-                ClipRRect(
-                  borderRadius:
-                      BorderRadius.circular(12),
-                  child: LinearProgressIndicator(
-                    value: confidence / 100,
-                    minHeight: 8,
-                    backgroundColor:
-                        const Color(0xFFE5E7EB),
-                    valueColor:
-                        const AlwaysStoppedAnimation(
-                      Color(0xFF168A2F),
-                    ),
+                    ],
                   ),
-                ),
 
-                const SizedBox(height: 16),
+                  const SizedBox(height: 8),
 
-                const Text(
-                  "Severity",
-                  style: TextStyle(
-                    fontSize: 13,
-                    color: Color(0xFF4B5563),
-                  ),
-                ),
-
-                const SizedBox(height: 8),
-
-                Container(
-                  padding:
-                      const EdgeInsets.symmetric(
-                    horizontal: 14,
-                    vertical: 8,
-                  ),
-                  decoration: BoxDecoration(
-                    color: _riskBackground,
+                  ClipRRect(
                     borderRadius:
                         BorderRadius.circular(12),
-                  ),
-                  child: Text(
-                    riskLevel,
-                    style: TextStyle(
-                      color: _riskColor,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 13,
+                    child: LinearProgressIndicator(
+                      value: confidence / 100,
+                      minHeight: 8,
+                      backgroundColor:
+                          const Color(0xFFE5E7EB),
+                      valueColor:
+                          const AlwaysStoppedAnimation(
+                        Color(0xFF168A2F),
+                      ),
                     ),
                   ),
-                ),
-              ],
+
+                  const SizedBox(height: 16),
+
+                  const Text(
+                    "Risk Level",
+                    style: TextStyle(
+                      fontSize: 13,
+                      color: Color(0xFF4B5563),
+                    ),
+                  ),
+
+                  const SizedBox(height: 8),
+
+                  Container(
+                    padding:
+                        const EdgeInsets.symmetric(
+                      horizontal: 18,
+                      vertical: 8,
+                    ),
+                    decoration: BoxDecoration(
+                      color: _riskBackground,
+                      borderRadius:
+                          BorderRadius.circular(12),
+                    ),
+                    child: Text(
+                      _displayRiskLevel,
+                      style: TextStyle(
+                        color: _riskColor,
+                        fontWeight:
+                            FontWeight.bold,
+                        fontSize: 13,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
